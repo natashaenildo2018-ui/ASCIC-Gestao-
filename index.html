@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101010">
+<title>ASCIC • Gestão Integrada</title>
+<style>
+:root{--bg:#0b0b0d;--panel:#171719;--panel2:#202024;--yellow:#eaff00;--white:#f7f7f7;--muted:#b7b7bd;--line:#35353b;--green:#42d392;--red:#ff6b6b;--blue:#80bfff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+.app{max-width:1050px;margin:auto;min-height:100vh;padding-bottom:82px}.top{display:flex;align-items:center;gap:13px;padding:15px 17px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#0b0b0dee;backdrop-filter:blur(12px);z-index:5}.logo{width:58px;height:58px;object-fit:cover;border-radius:50%;border:2px solid var(--yellow);background:#000}.brand{flex:1}.brand b{display:block;letter-spacing:.7px;font-size:17px}.brand small{color:var(--muted)}.profile{border:1px solid var(--line);background:var(--panel);color:white;border-radius:12px;padding:9px}
+main{padding:17px}.welcome{background:linear-gradient(130deg,#202020,#111);border:1px solid #474700;border-radius:20px;padding:19px;display:flex;align-items:center;gap:15px}.welcome img{width:76px;height:76px;object-fit:cover;border-radius:50%;border:2px solid var(--yellow)}h1{font-size:22px;margin:0 0 5px}.welcome p{margin:0;color:var(--muted);font-size:13px}.section-title{font-size:18px;margin:24px 0 12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px}.stat span{font-size:12px;color:var(--muted);display:block}.stat strong{font-size:23px;display:block;margin-top:7px}.stat em{font-style:normal;font-size:11px;color:var(--yellow)}.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tile{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:16px;color:white;text-align:left;min-height:115px}.tile .ico{font-size:25px;display:block;margin-bottom:10px}.tile b{display:block}.tile small{color:var(--muted);display:block;margin-top:5px}.view{display:none}.view.active{display:block}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 14px;font-weight:700;background:var(--yellow);color:#111}.btn.secondary{background:var(--panel2);border:1px solid var(--line);color:white}.btn.danger{background:#4a2020;color:#fff}.btn.small{padding:7px 10px;font-size:12px}.field{display:flex;flex-direction:column;gap:6px;margin:10px 0;flex:1;min-width:140px}.field label{font-size:12px;color:var(--muted)}input,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#101012;color:white}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tablewrap{overflow:auto;margin-top:12px}.table{width:100%;border-collapse:collapse;min-width:560px}.table th,.table td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted);font-weight:600}.pill{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;background:#28282c}.pill.green{color:var(--green);background:#123126}.pill.red{color:var(--red);background:#381c20}.pill.yellow{color:var(--yellow);background:#30300d}.notice{background:#25220e;border:1px solid #57520b;color:#f3ef9a;border-radius:12px;padding:12px;font-size:13px;line-height:1.45}.muted{color:var(--muted)}.bottom{position:fixed;bottom:0;left:0;right:0;background:#101012f2;backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:8}.nav{display:flex;width:min(1050px,100%);justify-content:space-around;padding:8px 4px}.nav button{flex:1;background:transparent;border:0;color:var(--muted);padding:6px 2px;font-size:11px}.nav button span{display:block;font-size:20px;margin-bottom:3px}.nav button.active{color:var(--yellow)}.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}.lineitem{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.lineitem:last-child{border:0}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}.tiles{grid-template-columns:repeat(2,1fr)}main{padding:13px}.welcome{padding:14px}.welcome img{width:62px;height:62px}.brand b{font-size:15px}.profile{font-size:12px}.formgrid{grid-template-columns:1fr}.stat strong{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+<img class="logo" src="assets/ascic-logo.png" alt="Emblema ASCIC">
+<div class="brand"><b>ASCIC • GESTÃO INTEGRADA</b><small>Segurança Civil de Curralinho</small></div>
+<button class="profile" onclick="showView('perfil')">👤 Acesso</button>
+</header>
+<main>
+<section id="inicio" class="view active">
+<div class="welcome"><img src="assets/ascic-logo.png" alt=""><div><h1>Bem-vindo à ASCIC</h1><p>Gestão de clientes, cobranças e rondas noturnas em um só lugar.</p></div></div>
+<div class="stats">
+<div class="stat"><span>Clientes cadastrados</span><strong id="statClientes">0</strong><em>Base local</em></div>
+<div class="stat"><span>Em aberto</span><strong id="statAberto">R$ 0</strong><em>Não confirmado</em></div>
+<div class="stat"><span>Pagamentos atrasados</span><strong id="statAtraso">0</strong><em>Requer atenção</em></div>
+<div class="stat"><span>Rondas registradas</span><strong id="statRondas">0</strong><em>Histórico local</em></div>
+</div>
+<h2 class="section-title">Acesso rápido</h2>
+<div class="tiles">
+<button class="tile" onclick="showView('clientes')"><span class="ico">👥</span><b>Clientes</b><small>Cadastros e imóveis</small></button>
+<button class="tile" onclick="showView('cobrancas')"><span class="ico">💳</span><b>Cobranças</b><small>Vencimentos e pagamentos</small></button>
+<button class="tile" onclick="showView('rondas')"><span class="ico">🌙</span><b>Rondas noturnas</b><small>00h às 06h · GPS + QR</small></button>
+<button class="tile" onclick="showView('relatorios')"><span class="ico">📊</span><b>Relatórios</b><small>Resumo financeiro e operacional</small></button>
+<button class="tile" onclick="showView('perfil')"><span class="ico">🔐</span><b>Perfis e acesso</b><small>Administração e atendimento</small></button>
+<button class="tile" onclick="showView('config')"><span class="ico">⚙️</span><b>Configurações</b><small>Planos e avisos</small></button>
+</div>
+<p class="notice" style="margin-top:14px">Protótipo demonstrativo: os dados ficam neste navegador. Para uso real por vários funcionários e clientes, será necessário servidor seguro, contas individuais, backup e integração de pagamentos/notificações.</p>
+</section>
+
+<section id="clientes" class="view">
+<h1>Clientes e imóveis</h1><p class="muted">Cadastre os clientes e vincule-os ao plano de cobrança.</p>
+<form id="clientForm" class="card">
+<div class="formgrid">
+<div class="field"><label>Nome do cliente *</label><input id="cNome" required placeholder="Nome completo"></div>
+<div class="field"><label>Telefone</label><input id="cTelefone" placeholder="(91) 99999-9999"></div>
+<div class="field"><label>Endereço / imóvel</label><input id="cEndereco" placeholder="Rua, número, bairro"></div>
+<div class="field"><label>Setor de ronda</label><input id="cSetor" placeholder="Ex.: Setor 1"></div>
+<div class="field"><label>Plano</label><select id="cPlano"><option value="mensal">1 residência — mensal</option><option value="quinzenal">1 residência — quinzenal</option><option value="3 casas">Pacote de 3 residências</option><option value="4 casas">Pacote de 4 residências</option></select></div>
+<div class="field"><label>Valor por cobrança (R$)</label><input id="cValor" type="number" min="0" step="0.01" value="200" required></div>
+<div class="field"><label>Próximo vencimento</label><input id="cVenc" type="date"></div>
+</div><button class="btn" type="submit">＋ Cadastrar cliente</button>
+</form>
+<h2 class="section-title">Lista de clientes</h2><div id="clientList"></div>
+</section>
+
+<section id="cobrancas" class="view">
+<h1>Gestão de cobranças</h1><p class="muted">Registre pagamentos e acompanhe pendências. Atraso não interrompe o acompanhamento das rondas.</p>
+<div class="notice">Regra ASCIC: clientes com cobrança atrasada continuam acompanhando as rondas autorizadas e recebem avisos de cobrança.</div>
+<div id="chargesList" class="card" style="margin-top:12px"></div>
+<h2 class="section-title">Adicionar cobrança</h2>
+<form id="chargeForm" class="card">
+<div class="formgrid">
+<div class="field"><label>Cliente</label><select id="chargeClient" required></select></div>
+<div class="field"><label>Valor (R$)</label><input id="chargeValue" type="number" min="0" step=".01" required></div>
+<div class="field"><label>Vencimento</label><input id="chargeDue" type="date" required></div>
+</div><button class="btn" type="submit">＋ Criar cobrança</button>
+</form>
+</section>
+
+<section id="rondas" class="view">
+<h1>Rondas noturnas</h1><p class="muted">Turno previsto: todos os dias conforme escala cadastrada, das 00h às 06h.</p>
+<div class="stats">
+<div class="stat"><span>Horário</span><strong>00–06h</strong><em>Turno noturno</em></div>
+<div class="stat"><span>Registros</span><strong id="roundCount">0</strong><em>Histórico local</em></div>
+</div>
+<div class="card" style="margin-top:12px">
+<h2 style="margin-top:0">Registrar passagem</h2>
+<div class="formgrid">
+<div class="field"><label>Setor / ponto de ronda</label><input id="rSetor" placeholder="Ex.: Setor 1 — ponto A" required></div>
+<div class="field"><label>Identificação do vigilante</label><input id="rVigilante" placeholder="Nome ou código interno"></div>
+<div class="field"><label>QR Code / código do ponto</label><input id="rQr" placeholder="Código lido ou digitado"></div>
+</div>
+<div class="row"><button class="btn" onclick="getGPS()">📍 Capturar GPS</button><button class="btn secondary" onclick="registerRound()">Registrar passagem</button></div>
+<p id="gpsStatus" class="muted" style="font-size:12px">GPS não capturado. O navegador pedirá permissão quando solicitado.</p>
+<p class="notice">Este protótipo não valida QR Codes cadastrados no servidor nem comprova a autenticidade do registro. No sistema definitivo, a passagem só será confirmada após validações de segurança.</p>
+</div>
+<h2 class="section-title">Histórico de passagens</h2><div id="roundList" class="card"></div>
+</section>
+
+<section id="relatorios" class="view">
+<h1>Relatórios</h1><p class="muted">Resumo dos dados registrados neste dispositivo.</p>
+<div id="reportContent" class="card"></div>
+<button class="btn secondary" onclick="exportData()">Exportar dados (JSON)</button>
+</section>
+
+<section id="perfil" class="view">
+<h1>Perfis e acesso</h1><p class="muted">Perfis planejados para a versão completa.</p>
+<div class="card">
+<div class="lineitem"><div><b>Natasha Dias Ramos</b><div class="muted">Administradora e Financeiro</div></div><span class="pill yellow">Admin</span></div>
+<div class="lineitem"><div><b>Izanildo Chaves Cardoso</b><div class="muted">Atendimento com permissões limitadas</div></div><span class="pill">Atendimento</span></div>
+<div class="lineitem"><div><b>Vigilante cadastrado</b><div class="muted">Registros de rondas e escala</div></div><span class="pill">Operacional</span></div>
+<div class="lineitem"><div><b>Cliente</b><div class="muted">Próprias cobranças e histórico autorizado</div></div><span class="pill">Cliente</span></div>
+</div>
+<div class="card" style="margin-top:12px">
+<h2 style="margin-top:0">Recuperação de senha</h2><p>Por e-mail cadastrado: <b>Natashaenildo2018@gmail.com</b></p>
+<p class="muted">O envio de e-mail ainda não está ativo neste protótipo. A versão real precisará de serviço de autenticação e envio seguro de links.</p>
+</div>
+</section>
+
+<section id="config" class="view">
+<h1>Configurações</h1>
+<div class="card">
+<h2 style="margin-top:0">Planos e valores iniciais</h2>
+<div class="lineitem"><span>1 residência — mensal</span><b>R$ 200,00</b></div>
+<div class="lineitem"><span>1 residência — a cada 15 dias</span><b>R$ 100,00</b></div>
+<div class="lineitem"><span>Pacote de 3 residências</span><b>Configurável</b></div>
+<div class="lineitem"><span>Pacote de 4 residências</span><b>Configurável</b></div>
+</div>
+<div class="card" style="margin-top:12px">
+<h2 style="margin-top:0">Recebimento</h2>
+<p>Chave Pix informada: <b>21.390.782/0001-92</b></p>
+<p class="muted">A chave e os dados bancários devem ser conferidos pela associação. Não há integração bancária ativa neste protótipo.</p>
+</div>
+<div class="card" style="margin-top:12px">
+<h2 style="margin-top:0">Avisos</h2>
+<p>Os lembretes de cobrança poderão ser enviados por WhatsApp e/ou e-mail após configuração de um provedor. Nenhuma mensagem será enviada por esta versão local.</p>
+</div>
+<div style="margin-top:12px"><button class="btn danger" onclick="clearAll()">Apagar dados deste navegador</button></div>
+</section>
+</main>
+</div>
+<nav class="bottom"><div class="nav">
+<button class="active" data-view="inicio" onclick="showView('inicio')"><span>⌂</span>Início</button>
+<button data-view="clientes" onclick="showView('clientes')"><span>♙</span>Clientes</button>
+<button data-view="cobrancas" onclick="showView('cobrancas')"><span>＄</span>Cobranças</button>
+<button data-view="rondas" onclick="showView('rondas')"><span>☾</span>Rondas</button>
+<button data-view="relatorios" onclick="showView('relatorios')"><span>▥</span>Relatórios</button>
+</div></nav>
+<script>
+const $=id=>document.getElementById(id);
+let clients=JSON.parse(localStorage.getItem('ascic_clients')||'[]');
+let charges=JSON.parse(localStorage.getItem('ascic_charges')||'[]');
+let rounds=JSON.parse(localStorage.getItem('ascic_rounds')||'[]');
+let gps=null;
+const brl=v=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const today=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem('ascic_clients',JSON.stringify(clients));localStorage.setItem('ascic_charges',JSON.stringify(charges));localStorage.setItem('ascic_rounds',JSON.stringify(rounds));render()}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));render();window.scrollTo({top:0,behavior:'smooth'})}
+function render(){
+$('statClientes').textContent=clients.length;
+const open=charges.filter(c=>c.status!=='Pago').reduce((a,c)=>a+Number(c.value),0);
+$('statAberto').textContent=brl(open);$('statAtraso').textContent=charges.filter(c=>c.status!=='Pago'&&c.due<today()).length;
+$('statRondas').textContent=rounds.length;$('roundCount').textContent=rounds.length;
+$('clientList').innerHTML=clients.length?'<div class="card tablewrap"><table class="table"><thead><tr><th>Cliente</th><th>Plano</th><th>Valor</th><th>Setor</th><th>Ação</th></tr></thead><tbody>'+clients.map(c=>`<tr><td><b>${esc(c.name)}</b><br><span class="muted">${esc(c.phone||'')}</span></td><td>${esc(c.plan)}</td><td>${brl(c.value)}</td><td>${esc(c.sector||'—')}</td><td><button class="btn small secondary" onclick="newCharge('${c.id}')">Cobrar</button> <button class="btn small danger" onclick="deleteClient('${c.id}')">Excluir</button></td></tr>`).join('')+'</tbody></table></div>':'<div class="empty">Nenhum cliente cadastrado ainda.</div>';
+$('chargeClient').innerHTML=clients.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')||'<option value="">Cadastre um cliente primeiro</option>';
+$('chargesList').innerHTML=charges.length?'<div class="tablewrap"><table class="table"><thead><tr><th>Cliente</th><th>Valor</th><th>Vencimento</th><th>Status</th><th>Ação</th></tr></thead><tbody>'+charges.map(c=>{let status=c.status==='Pago'?'Pago':(c.due<today()?'Atrasado':'Pendente');return `<tr><td>${esc((clients.find(x=>x.id===c.clientId)||{}).name||'Cliente removido')}</td><td>${brl(c.value)}</td><td>${c.due||'—'}</td><td><span class="pill ${status==='Pago'?'green':status==='Atrasado'?'red':'yellow'}">${status}</span></td><td>${status!=='Pago'?`<button class="btn small" onclick="markPaid('${c.id}')">Confirmar pagamento</button>`:'—'}</td></tr>`}).join('')+'</tbody></table></div>':'<div class="empty">Nenhuma cobrança cadastrada.</div>';
+$('roundList').innerHTML=rounds.length?[...rounds].reverse().map(r=>`<div class="lineitem"><div><b>${esc(r.sector)}</b><div class="muted">${esc(r.guard||'Vigilante não identificado')} · ${new Date(r.time).toLocaleString('pt-BR')}</div><div class="muted">QR: ${esc(r.qr||'não informado')} · ${r.gps?'GPS capturado':'sem GPS'}</div></div><span class="pill yellow">Registro local</span></div>`).join(''):'<div class="empty">Nenhuma passagem registrada.</div>';
+const paid=charges.filter(c=>c.status==='Pago').reduce((a,c)=>a+Number(c.value),0);
+$('reportContent').innerHTML=`<div class="lineitem"><span>Clientes cadastrados</span><b>${clients.length}</b></div><div class="lineitem"><span>Cobranças registradas</span><b>${charges.length}</b></div><div class="lineitem"><span>Valor em aberto</span><b>${brl(open)}</b></div><div class="lineitem"><span>Pagamentos confirmados</span><b>${brl(paid)}</b></div><div class="lineitem"><span>Rondas registradas</span><b>${rounds.length}</b></div><div class="lineitem"><span>Turno configurado</span><b>00h às 06h</b></div>`;
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('clientForm').addEventListener('submit',e=>{e.preventDefault();const plan=$('cPlano').value;let value=Number($('cValor').value);clients.push({id:crypto.randomUUID(),name:$('cNome').value.trim(),phone:$('cTelefone').value.trim(),address:$('cEndereco').value.trim(),sector:$('cSetor').value.trim(),plan,value,due:$('cVenc').value});save();e.target.reset();$('cValor').value=plan==='quinzenal'?100:200;alert('Cliente cadastrado neste dispositivo.')});
+$('cPlano').addEventListener('change',()=>{$('cValor').value=$('cPlano').value==='quinzenal'?100:($('cPlano').value==='mensal'?200:0)});
+$('chargeForm').addEventListener('submit',e=>{e.preventDefault();if(!$('chargeClient').value){alert('Cadastre um cliente primeiro.');return}charges.push({id:crypto.randomUUID(),clientId:$('chargeClient').value,value:Number($('chargeValue').value),due:$('chargeDue').value,status:'Pendente'});save();e.target.reset();alert('Cobrança criada neste dispositivo.')});
+function newCharge(id){showView('cobrancas');$('chargeClient').value=id;let c=clients.find(x=>x.id===id);if(c)$('chargeValue').value=c.value;$('chargeDue').value=c?.due||''}
+function markPaid(id){let c=charges.find(x=>x.id===id);if(c&&confirm('Confirmar pagamento desta cobrança?')){c.status='Pago';c.paidAt=new Date().toISOString();save()}}
+function deleteClient(id){if(confirm('Excluir este cliente? As cobranças existentes serão mantidas no histórico.')){clients=clients.filter(c=>c.id!==id);save()}}
+function getGPS(){if(!navigator.geolocation){$('gpsStatus').textContent='Este navegador não oferece GPS.';return} $('gpsStatus').textContent='Solicitando permissão de localização…';navigator.geolocation.getCurrentPosition(p=>{gps={lat:p.coords.latitude,lon:p.coords.longitude,accuracy:p.coords.accuracy};$('gpsStatus').textContent=`GPS capturado · precisão estimada ${Math.round(gps.accuracy)} m. Coordenadas serão mantidas no registro local.`},e=>{$('gpsStatus').textContent='Não foi possível capturar GPS: '+e.message},{enableHighAccuracy:true,timeout:10000})}
+function registerRound(){const sector=$('rSetor').value.trim();if(!sector){alert('Informe o setor ou ponto de ronda.');return}rounds.push({id:crypto.randomUUID(),sector,guard:$('rVigilante').value.trim(),qr:$('rQr').value.trim(),gps,time:new Date().toISOString()});save();$('rSetor').value='';$('rQr').value='';gps=null;$('gpsStatus').textContent='Registro salvo localmente. Não foi validado por servidor.';alert('Registro demonstrativo salvo neste dispositivo.')}
+function exportData(){const blob=new Blob([JSON.stringify({clients,charges,rounds},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ascic-dados.json';a.click();URL.revokeObjectURL(a.href)}
+function clearAll(){if(confirm('Isso apagará clientes, cobranças e rondas deste navegador. Continuar?')){clients=[];charges=[];rounds=[];save()}}
+render();
+</script>
+</body>
+</html>
